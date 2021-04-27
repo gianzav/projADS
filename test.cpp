@@ -3,6 +3,7 @@
 #include <ctime>
 #include <fstream>
 #include <string>
+#include <sys/stat.h>
 
 std::string generazioneStringa(int n) {
     std::string s = "";
@@ -24,22 +25,35 @@ int main() {
 
     string s;
 
-    string fileName = "rand";
+    string fileName = "./generated/rand";
     string fileExt = ".txt";
     int suffix = 1; 
 
     fstream f;
-    f.open(fileName + fileExt, std::ios_base::out);
 
     /* If the file already exists close it */
-    while (f) {
-        f.close();
-        f.open(fileName + to_string(suffix++) + fileExt, std::ios_base::out);
+    /* while (f) { */
+    /*     f.close(); */
+    /*     f.open(fileName + to_string(suffix++) + fileExt, std::ios_base::out); */
+    /* } */
+
+    /* for (int i = 0; i < 10; i++) { */
+
+    /* } */
+
+    struct stat buf;
+
+    while (stat( (fileName + to_string(suffix) + fileExt).c_str(), &buf) != -1) {
+        suffix++;
     }
 
-    for (int i = 0; i < 10; i++) {
+    f.open(fileName + to_string(suffix) + fileExt, ios_base::out);
 
+    for (int i = 0; i<10; i++) {
+        s = generazioneStringa(10);
+        f << s << endl;
     }
 
     f.close();
+    return 0;
 }

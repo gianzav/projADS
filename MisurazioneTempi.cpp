@@ -74,6 +74,10 @@ int misurazioneTempiMedi() {
         // tempo medio della generazione
         start = steady_clock::now();
         k = 0;
+
+        /* Nuovo seed per cambiare sequenza pseudo-casuale */
+        srand(time(0));
+
         do {
             string StringaGenerata = generazioneStringa(n);
             periodo = PeriodSmart(StringaGenerata);
