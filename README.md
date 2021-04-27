@@ -4,8 +4,8 @@ Periodo frazionario: valutazione degli algoritmi PeriodNaive e PeriodSmart
 
 **TODO**:
 
-[ ] Valutazione tempi
-[ ] Relazione
+- [ ] Valutazione tempi
+- [ ] Relazione
 
 # Parte 2
 
@@ -17,9 +17,9 @@ Alberi binari di ricerca: valutazione dei tempi di inserimento e ricerca in
 
 **TODO**:
 
-[ ] Codice per i test dei tempi di esecuzione
-[ ] Valutazione tempi
-[ ] Relazione
+- [ ] Codice per i test dei tempi di esecuzione
+- [ ] Valutazione tempi
+- [ ] Relazione
 
 ## Note
 
