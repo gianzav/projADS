@@ -23,4 +23,6 @@ Alberi binari di ricerca: valutazione dei tempi di inserimento e ricerca in
 
 ## Note
 
-* In `bin` si trovano i programmi compilati
+* `bin` : programmi compilati (attualmente con gcc 10.2.0 su Linux)
+* `measures` : misurazioni dei tempi
+* `generated` : stringhe pseudo-casuali
