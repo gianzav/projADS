@@ -49,7 +49,7 @@ int PeriodSmart(string s) { // calcolo bordo
 }
 
 int misurazioneTempiMedi() {
-    int nMin = 10:00;
+    int nMin = 1000;
     int nMax = 500000;                         // 500'000
     double A = nMin;                           // ricavo A
     double B = exp((log(nMax) - log(A)) / 99); // ricavo B
@@ -64,6 +64,9 @@ int misurazioneTempiMedi() {
     double conversione;
     double nseconds;
 
+    /* Nuovo seed per cambiare sequenza pseudo-casuale */
+    srand(time(0));
+
     for (int j = 0; j <= 99; j++) {
         R = getResolution();
         m = A * pow(B, j);
@@ -75,9 +78,6 @@ int misurazioneTempiMedi() {
         start = steady_clock::now();
         k = 0;
 
-        /* Nuovo seed per cambiare sequenza pseudo-casuale */
-        srand(time(0));
-
         do {
             string StringaGenerata = generazioneStringa(n);
             periodo = PeriodSmart(StringaGenerata);
@@ -85,22 +85,27 @@ int misurazioneTempiMedi() {
             k = k + 1;
             diff = end - start;
             conversione = double(diff.count());
-        } while (conversione <
-        ((R / Emax) + R)); // end-start -> ^kx^   //sottrarre il tempo
+        } while (conversione < ((R / Emax) + R)); // end-start -> ^kx^   //sottrarre il tempo
         // medio della generazione per
         tn = (conversione) / k; // tn = x^ con errore relativo <= Emax
+
         /*cout<<tn<<endl;*/     // cout<<tn/pow(10,9)<<" grandezza n: "<<n<<endl;
-        nseconds = tn * steady_clock::period::num /
-        steady_clock::period::den; // conversione in secondi
+
+        nseconds = tn * steady_clock::period::num / steady_clock::period::den; // conversione in secondi
+
         // //double(diff.count())
+        
         cout << "Tempo (sec): " << nseconds << " grandezza: " << n << endl;
     }
+
     return 0;
 }
+
 int main() {
     cout << "---New Test---" << endl;
     // string prova=generazioneStringa(5);// generazione  stringa fatta
     // cout<<prova;
     misurazioneTempiMedi();
+
     return 0;
 }
