@@ -14,8 +14,7 @@ public class PeriodNaive
            //System.out.println("s2: "+s2);
            if(s2.equals(s1)){
                System.out.println("Trovato: "+s1);           
-            return p;
-            }
+            return p; }
         }
        // System.out.println("----------------");
     }  
@@ -32,6 +31,8 @@ public class PeriodNaive
         System.out.println(PeriodNaive("abca"));         
     }
 }*/
+
+#include "period.h"
 #include <iostream>
 using namespace std;
 
@@ -50,10 +51,10 @@ int PeriodNaive(string s){	//complessità O(n^2)
     return n;
 }  
 
-int main(){
-    int c = PeriodNaive("abcabcabc");
-    /*	string stringa;
-    std::cin>> stringa;*/
-    cout << c << endl;
-    return 0;
-}
+/* int main(){ */
+/*     int c = PeriodNaive("abcabcabc"); */
+/*     	/1* string stringa; *1/ */
+/*     /1* std::cin>> stringa; *1/ */
+/*     cout << c << endl; */
+/*     return 0; */
+/* } */

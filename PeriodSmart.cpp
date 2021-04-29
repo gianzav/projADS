@@ -1,3 +1,4 @@
+#include "period.h"
 #include <iostream>
 using namespace std;
 
@@ -23,10 +24,10 @@ int PeriodSmart(string s) {  //calcolo bordo
 }
 
 
-int main() {
-    string stringa = "abcabcabca";
-	//std::cin>> stringa;
-	int freq = PeriodSmart(stringa);
-	cout << freq;
-	return 0;
-}
+/* int main() { */
+/*     string stringa = "abcabcabca"; */
+/* 	//std::cin>> stringa; */
+/* 	int freq = PeriodSmart(stringa); */
+/* 	cout << freq; */
+/* 	return 0; */
+/* } */

@@ -1,3 +1,4 @@
+#include "period.h"
 #include <chrono>
 #include <cstdlib>
 #include <iostream>
@@ -29,26 +30,8 @@ string generazioneStringa(int n) {
     return s;
 }
 
-// PERIOD SMART
-int PeriodSmart(string s) { // calcolo bordo
-    int n = s.length();
-    int r[n + 1];
-    r[1] = 0;
-    for (int i = 1; i < n; i++) {
-        int z = r[i];
-        while ((z > 0) && (s.substr(i, 1) != s.substr(z, 1))) {
-            z = r[z];
-        }
-        if (s.substr(i, 1) == s.substr(z, 1)) {
-            r[i + 1] = z + 1;
-        } else {
-            r[i + 1] = 0;
-        }
-    }
-    return n - r[n]; // r[n] bordo max di S (n-r[n] = periodo minimo)
-}
 
-int misurazioneTempiMedi() {
+int misurazioneTempiMedi(int (*periodFunc)(std::string) ) {
     int nMin = 1000;
     int nMax = 500000;                         // 500'000
     double A = nMin;                           // ricavo A
@@ -80,7 +63,7 @@ int misurazioneTempiMedi() {
 
         do {
             string StringaGenerata = generazioneStringa(n);
-            periodo = PeriodSmart(StringaGenerata);
+            periodo = periodFunc(StringaGenerata);
             end = steady_clock::now();
             k = k + 1;
             diff = end - start;
@@ -101,11 +84,13 @@ int misurazioneTempiMedi() {
     return 0;
 }
 
+
 int main() {
     cout << "---New Test---" << endl;
     // string prova=generazioneStringa(5);// generazione  stringa fatta
     // cout<<prova;
-    misurazioneTempiMedi();
+    misurazioneTempiMedi(PeriodNaive);
+    misurazioneTempiMedi(PeriodSmart);
 
     return 0;
 }
