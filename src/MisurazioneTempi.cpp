@@ -5,6 +5,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 #include <time.h>
 
 using namespace std;
@@ -31,7 +32,7 @@ string generazioneStringa(int n) {
 }
 
 
-int misurazioneTempiMedi(int (*periodFunc)(std::string) ) {
+int misurazioneTempiMedi(int (*periodFunc)(std::string), std::string funcName) {
     int nMin = 1000;
     int nMax = 500000;                         // 500'000
     double A = nMin;                           // ricavo A
@@ -47,8 +48,7 @@ int misurazioneTempiMedi(int (*periodFunc)(std::string) ) {
     double conversione;
     double nseconds;
 
-    /* Nuovo seed per cambiare sequenza pseudo-casuale */
-    srand(time(0));
+    cout << "---New Test-" << funcName << "---" << endl;
 
     for (int j = 0; j <= 99; j++) {
         R = getResolution();
@@ -86,11 +86,14 @@ int misurazioneTempiMedi(int (*periodFunc)(std::string) ) {
 
 
 int main() {
-    cout << "---New Test---" << endl;
+
+    /* Nuovo seed per cambiare sequenza pseudo-casuale */
+    srand(time(0));
+
     // string prova=generazioneStringa(5);// generazione  stringa fatta
     // cout<<prova;
-    misurazioneTempiMedi(PeriodNaive);
-    misurazioneTempiMedi(PeriodSmart);
+    misurazioneTempiMedi(PeriodNaive, "PeriodNaive");
+    misurazioneTempiMedi(PeriodSmart, "PeriodSmart");
 
     return 0;
 }

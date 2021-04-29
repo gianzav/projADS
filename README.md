@@ -23,6 +23,8 @@ Alberi binari di ricerca: valutazione dei tempi di inserimento e ricerca in
 
 ## Note
 
+* `src` : file sorgente
 * `bin` : programmi compilati (attualmente con gcc 10.2.0 su Linux)
+* `obj` : file oggetto (compilati ma non linkati)
 * `measures` : misurazioni dei tempi
 * `generated` : stringhe pseudo-casuali
