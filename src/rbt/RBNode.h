@@ -1,3 +1,4 @@
+#include "../tree/BiNode.h"
 #include <iostream>
 #include <string>
 
@@ -6,32 +7,32 @@
 
 enum colors {RED, BLACK}; // 0: RED, 1: BLACK
 
-class Node {
+class RBNode : BiNode {
     private:
         int key;
         std::string value;
         int height;
         int blackHeight;
         colors color;
-        Node* parent;
-        Node* left;
-        Node* right;
+        RBNode* parent;
+        RBNode* left;
+        RBNode* right;
         bool aIsNull;
 
-        void preOrder(Node* x);
+        void preOrder(RBNode* x);
 
     public:
-        ~Node();
-        Node(int key, std::string value, colors color);
-        Node(int key, std::string value, colors color, Node* left, Node* right);
-        Node(int key, std::string value, int height, int blackHeight, colors color, Node* parent, Node* left, Node* right, bool isNull);
+        ~RBNode();
+        RBNode(int key, std::string value, colors color);
+        RBNode(int key, std::string value, colors color, RBNode* left, RBNode* right);
+        RBNode(int key, std::string value, int height, int blackHeight, colors color, RBNode* parent, RBNode* left, RBNode* right, bool isNull);
 
 
-        Node* insert(Node* x); // x: new node, y: parent
-        Node* remove(int k);
-        Node* find(int k);
-        Node* leftRotate();
-        Node* rightRotate();
+        RBNode* insert(RBNode* x); // x: new node, y: parent
+        RBNode* remove(int k);
+        RBNode* find(int k);
+        RBNode* leftRotate();
+        RBNode* rightRotate();
         void insertBalance();
         void show();
 
@@ -43,6 +44,6 @@ class Node {
         int getBlackHeight();
         void changeColor(colors c);
         void toggleColor();
-        static Node NULLNODE; 
+        static RBNode NULLNODE; 
 };
 #endif
