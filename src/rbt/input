@@ -1,0 +1,101 @@
+insert 9 nine
+show
+exit
+
+expected output:
+    9:nine:black NULL NULL
+
+---
+
+insert 3 three
+insert 7 seven
+insert 9 nine
+insert 0 zero
+insert 12 twelve
+show
+find 3
+exit
+
+expected output:
+    7:seven:black 3:three:black 0:zero:red NULL NULL NULL 9:nine:black NULL 12:twelve:red NULL NULL
+    three
+
+---
+
+insert 5 five
+insert 8 eight
+insert 11 eleven
+insert 14 fourteen
+insert 17 seventeen
+insert 1 one
+insert 13 thirteen
+insert 4 four
+show
+find 8
+exit
+
+expected output:
+    8:eight:black 4:four:black 1:one:red NULL NULL 5:five:red NULL NULL 14:fourteen:red 11:eleven:black NULL 13:thirteen:red NULL NULL 17:seventeen:black NULL NULL
+    eight
+
+---
+
+insert 12 twelve
+insert 10 ten
+insert 7 seven
+insert 17 seventeen
+insert 19 nineteen
+insert 15 fifteen
+insert 13 thirteen
+insert 9 nine
+insert 4 four
+insert 1 one
+insert 5 five
+insert 18 eighteen
+insert 0 zero
+insert 6 six
+insert 3 three
+insert 16 sixteen
+insert 8 eight
+show
+find 15
+exit
+
+expected output:
+    10:ten:black 7:seven:black 4:four:red 1:one:black 0:zero:red NULL NULL
+    3:three:red NULL NULL 5:five:black NULL 6:six:red NULL NULL 9:nine:black
+    8:eight:red NULL NULL NULL 17:seventeen:black 13:thirteen:red
+    12:twelve:black NULL NULL 15:fifteen:black NULL 16:sixteen:red NULL NULL
+    19:nineteen:black 18:eighteen:red NULL NULL NULL fifteen
+
+---
+
+insert 7 seven
+insert 11 eleven
+insert 14 fourteen
+insert 5 five
+insert 1 one
+insert 17 seventeen
+insert 8 eight
+insert 2 two
+insert 15 fifteen
+insert 13 thirteen
+insert 0 zero
+insert 19 nineteen
+insert 9 nine
+insert 6 six
+insert 16 sixteen
+insert 4 four
+insert 18 eighteen
+insert 12 twelve
+show
+find 7
+exit
+
+expected output:
+    11:eleven:black 5:five:black 1:one:red 0:zero:black NULL NULL 2:two:black
+    NULL 4:four:red NULL NULL 8:eight:red 7:seven:black 6:six:red NULL NULL
+    NULL 9:nine:black NULL NULL 15:fifteen:black 13:thirteen:black
+    12:twelve:red NULL NULL 14:fourteen:red NULL NULL 17:seventeen:red
+    16:sixteen:black NULL NULL 19:nineteen:black 18:eighteen:red NULL NULL NULL
+    seven
