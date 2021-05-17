@@ -1,0 +1,28 @@
+# Parte 1
+
+- Sia periodNaive che Smart
+  - Tempi medi per metodo A di generazione
+  - Tempi medi per metodo B di generazione
+  - Tempi medi per metodo C di generazione (caso pessimo)
+  - Probabilità della lunghezza del periodo con lunghezza stringa data
+  - Scala lineare, doppiamente logaritmica
+  - Media e deviazione standard dei tempi per una lunghezza fissata (es. 1000)
+
+- Librerie usate (es. chrono)
+- Come è stata fatta la trasformazione tempo in secondi
+
+ `nseconds = tn - steady_clock::period::num / steady_clock::period::den; // conversione in secondi`
+
+- Spiegazione del magheggio col puntatore a funzione
+
+
+# Parte 2
+
+- Scelte implementative per gli alberi
+
+- Tempi medi, ammortizzati e deviazione standard (x3)
+    - Scala lineare e doppiamente logaritmica
+
+- Specificare se si è tenuto conto delle n op. di ricerca e m inserimenti in
+  modo separato (quindi calcolo tempo/n+m) o solo ricerca/inserimento (quindi
+  tempo/n)
