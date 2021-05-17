@@ -97,3 +97,71 @@ int main() {
 
     return 0;
 }
+
+/* - Provare a vedere come viene il grafico anche con n > 1000
+*   - Probabilmente i grafici saranno simili visto che n è fissato
+*  - Provare a scriverla in maniera più bella (togliere roba inutile)
+*  - Commentare il codice
+**/
+/* int misurazioneTempiMedi2(int (*periodFunc)(std::string), std::string funcName) { */
+/*     int nMin = 1000; */
+/*     int nMax = 500000;                         // 500'000 */
+/*     double A = nMin;                           // ricavo A */
+/*     double B = exp((log(nMax) - log(A)) / 99); // ricavo B */
+/*     double m; */
+/*     int n, k, periodo; */
+/*     double R;                       // Risoluzione  clock */
+/*     double Emax = 0.001;            // Errorre relativo massimo ammesso */
+/*     steady_clock::time_point start; // = clock start; */
+/*     steady_clock::time_point end;   // = clock end; */
+/*     steady_clock::duration diff; */
+/*     double tn; */
+/*     double conversione; */
+/*     double nseconds; */
+/*     double meanTime = 0; */
+/*     double sd = 0; */
+
+/*     cout << "---New Test-" << funcName << "---" << endl; */
+
+/*     n = 1000; */
+
+/*     double times[100]; */
+
+/*     for (int j = 0; j <= 99; j++) { */
+/*         R = getResolution(); */
+
+/*         start = steady_clock::now(); */
+/*         k = 0; */
+
+/*         do { */
+/*             string StringaGenerata = generazioneStringa(n); */
+/*             periodo = periodFunc(StringaGenerata); */
+/*             end = steady_clock::now(); */
+/*             k = k + 1; */
+/*             diff = end - start; */
+/*             conversione = double(diff.count()); */
+/*         } while (conversione < ((R / Emax) + R)); */ 
+/*         tn = (conversione) / k; */
+
+/*         nseconds = tn * steady_clock::period::num / steady_clock::period::den; */
+
+/*         times[j] = nseconds; */
+
+/*         /1* Calcolo deviazione standard *1/ */
+        
+/*         cout << "Tempo (sec): " << nseconds << " grandezza: " << n << endl; */
+/*     } */
+
+/*     for (int i=0; i<100; i++) { */
+/*         meanTime += times[i]; */
+/*     } */
+/*     meanTime = meanTime/n; */
+
+/*     for (int i=0; i<100; i++) { */
+/*         sd += pow((times[i] - meanTime), 2); */
+/*     } */
+
+/*     sd = sqrt(sd/n); */
+
+/*     return 0; */
+/* } */

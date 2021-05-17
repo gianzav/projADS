@@ -6,6 +6,7 @@ int PeriodSmart(string s) {  //calcolo bordo
     int n = s.length();
     int r[n+1];
     r[1] = 0;           
+
     for (int i = 1; i < n; i++) {
         //cout<<s.substr(i+1,1)<<endl; 
         int z = r[i];

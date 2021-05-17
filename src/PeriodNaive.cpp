@@ -51,10 +51,18 @@ int PeriodNaive(string s){	//complessità O(n^2)
     return n;
 }  
 
-/* int main(){ */
-/*     int c = PeriodNaive("abcabcabc"); */
-/*     	/1* string stringa; *1/ */
-/*     /1* std::cin>> stringa; *1/ */
-/*     cout << c << endl; */
-/*     return 0; */
-/* } */
+/**
+ * input=abcabcab
+ *      output=3
+ * 
+ * input=aba
+ *      output=2
+ * 
+ * input=abca
+ *      output=3
+ *
+ *
+ *
+ *  aaaabaaaa
+ *
+ */
