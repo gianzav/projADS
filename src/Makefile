@@ -2,8 +2,8 @@ CC = g++
 BIN_DIR = ../bin/
 OBJ_DIR = ../obj/
 # SRC_DIR = ./src/
-DEPS = period.h
-OBJ = $(OBJ_DIR)MisurazioneTempi.o $(OBJ_DIR)PeriodNaive.o $(OBJ_DIR)PeriodSmart.o
+DEPS = period.h Generazione.h
+OBJ = $(OBJ_DIR)MisurazioneTempi.o $(OBJ_DIR)PeriodNaive.o $(OBJ_DIR)PeriodSmart.o $(OBJ_DIR)Generazione.o
 
 all: $(OBJ)
 	$(CC) $(OBJ_DIR)*.o -o $(BIN_DIR)MisurazioneTempi
