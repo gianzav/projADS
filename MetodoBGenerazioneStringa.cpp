@@ -1,4 +1,4 @@
-//metodo B
+/;/metodo B
 string generazioneStringaMetodoB(int n)
 	 /* Nuovo seed per cambiare sequenza pseudo-casuale */  
 	 	srand(time(0));	
