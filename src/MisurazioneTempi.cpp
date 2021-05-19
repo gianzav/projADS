@@ -12,14 +12,20 @@
 using namespace std;
 using namespace std::chrono;
 
+/* Formato in cui esprimere le misure (conversione in secondi e
+* rappresentazione a doppia precisione) */
+typedef duration<double, seconds::period> secs;
+
+
 double getResolution() {
     steady_clock::time_point start = steady_clock::now();
     steady_clock::time_point end;
     do {
         end = steady_clock::now();
     } while (start == end);
-    typedef duration<double, seconds::period> duration;
-    return duration_cast<seconds>(end - start).count();
+
+    /* Conversione dei tick della CPU contati in secondi */
+    return duration_cast<secs>(end - start).count();
 }
 
 
@@ -41,7 +47,7 @@ int misurazioneTempiMedi(int (*periodFunc)(std::string), std::string funcName) {
     double Emax = 0.001;                        // Errorre relativo massimo ammesso
     steady_clock::time_point start;             // = clock start;
     steady_clock::time_point end;               // = clock end;
-    steady_clock::duration diff;
+    /* duration<double, seconds::period> diff; */
     double tn;
     double conversion;
     double nSeconds;
@@ -55,7 +61,6 @@ int misurazioneTempiMedi(int (*periodFunc)(std::string), std::string funcName) {
 
         /* n viene generato in base alla funzione esponenziale passante per i
         * punti (x1, nMin) e (x2, nMax) */
-
         n = (int)m;
 
         start = steady_clock::now();
@@ -64,15 +69,18 @@ int misurazioneTempiMedi(int (*periodFunc)(std::string), std::string funcName) {
         k = 0;
 
         do {
-            string StringaGenerata = generazioneStringaA(n);
+            string StringaGenerata = generazioneStringaB(n);
             period = periodFunc(StringaGenerata);
             end = steady_clock::now();
 
             /* Incremento k finchè la disequazione non è vera */
             k = k + 1;
+            /* diff = end - start; */
 
-            diff = end - start;
-            conversion = double(diff.count());
+            /* Conversione in secondi del tempo di calcolo, moltiplicato per la
+            * costante k */
+            conversion = duration_cast<secs>(end-start).count();
+
         } while (conversion < ((R / Emax) + R));
 
         /* tn = tempo impiegato per terminare la computazione calcolato con
@@ -80,10 +88,10 @@ int misurazioneTempiMedi(int (*periodFunc)(std::string), std::string funcName) {
         tn = (conversion) / k;
 
         /* Conversione in secondi */
-        nSeconds = tn * steady_clock::period::num / steady_clock::period::den; // conversione in secondi
+        /* nSeconds = tn * steady_clock::period::num / steady_clock::period::den; // conversione in secondi */
 
         /* Stampa delle misurazioni */
-        cout << n << "," << nSeconds << endl;
+        cout << n << "," << tn << endl;
     }
 
     return 0;
@@ -105,7 +113,7 @@ void deviazioneStandardPeriodo(int (*periodFunc)(std::string), std::string funcN
     double Emax = 0.001;            // Errorre relativo massimo ammesso
     steady_clock::time_point start; // = clock start;
     steady_clock::time_point end;   // = clock end;
-    steady_clock::duration diff;
+    /* steady_clock::duration diff; */
     double tn;
     double conversion;
     double nSeconds;
@@ -131,17 +139,17 @@ void deviazioneStandardPeriodo(int (*periodFunc)(std::string), std::string funcN
             period = periodFunc(StringaGenerata);
             end = steady_clock::now();
             k = k + 1;
-            diff = end - start;
-            conversion = double(diff.count());
+            /* diff = end - start; */
+            conversion = duration_cast<secs>(end-start).count();
         } while (conversion < ((R / Emax) + R));
 
         /* Calcolo del tempo impiegato con errore relativo <= Emax */
         tn = (conversion) / k;
         /* Conversione del tempo in secondi */
-        nSeconds = tn * steady_clock::period::num / steady_clock::period::den;
+        /* nSeconds = tn * steady_clock::period::num / steady_clock::period::den; */
 
         /* Memorizzazione del tempo impiegato per la singola esecuzione */
-        times[j] = nSeconds;
+        times[j] = tn;
     }
 
     /* Calcolo della media dei tempi */
