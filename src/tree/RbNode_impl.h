@@ -264,10 +264,9 @@ RbNode<T>* RbNode<T>::remove(int k) { return NULL; }
 
 template <class T>
 RbNode<T>* RbNode<T>::clear() {
-    if (!this->isNull()) {
-        this->left->clear();
-        this->right->clear();
-        delete this;
-    }
+    if (this->left != NULL && !this->left->isNull())
+        delete this->left;
+    if (this->right != NULL && !this->left->isNull())
+        delete this->right;
     return &NULLNODE;
 }

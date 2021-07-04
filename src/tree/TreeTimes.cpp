@@ -1,19 +1,20 @@
-#include "old/AvlNode.h"
-#include "old/RbNode.h"
-#include "old/BstNode.h"
+#include "AvlNode.h"
+#include "RbNode.h"
+#include "BstNode.h"
+
 #include <chrono>
-#include <cmath>
-#include <cstdint>
 #include <cstdlib>
 #include <iostream>
 #include <math.h>
-#include <ratio>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
 #include <time.h>
-#include <thread>
-#include <stdint.h>
+
+/* #include <cmath> */
+/* #include <cstdint> */
+/* #include <ratio> */
+/* #include <stdint.h> */
 
 /**
 *
@@ -42,16 +43,17 @@
 using namespace std;
 using namespace std::chrono;
 
+typedef duration<double, seconds::period> secs;
+
 double getResolution() {
-
-
     steady_clock::time_point start = steady_clock::now();
     steady_clock::time_point end;
     do {
         end = steady_clock::now();
     } while (start == end);
-    typedef duration<double, seconds::period> duration;
-    return duration_cast<seconds>(end - start).count();
+
+    /* Conversione dei tick della CPU contati in secondi */
+    return duration_cast<secs>(end - start).count();
 }
 
 template <class T>
@@ -60,22 +62,23 @@ void treeTimes(BiNode<T>* tree, string treeType) {
     int nMax = 100000;
     double A = nMin;                            // ricavo A
     double B = exp((log(nMax) - log(A)) / 99);  // ricavo B
+
     double m;
     int n, k;
     double R;                                   // Risoluzione  clock
     double Emax = 0.01;                         // Errorre relativo massimo ammesso
     steady_clock::time_point start;             // = clock start;
     steady_clock::time_point end;               // = clock end;
-    steady_clock::duration diff;
+    /* steady_clock::duration diff; */
     double tn;
-    double conversione;
-    double nseconds;
+    double conversion;
+    double nSeconds;
     int randKey; 
     double sd = 0;                                  // deviazione standard
     double timeTot = 0;
     double meanTime = 0; 
     BiNode<T>* node;
-    BiNode<T>* rootCopy = tree;
+
 
     cout << "Misurazione tempi con " << treeType << endl;
     cout << "Numero operazioni,Tempo totale,Tempo ammortizzato,Deviazione standard" << endl;
@@ -85,6 +88,10 @@ void treeTimes(BiNode<T>* tree, string treeType) {
         m = A * pow(B, j);
         n = (int)m;
         double times[n];
+
+        double sd = 0;
+        double timeTot = 0;
+        double meanTime = 0; 
         
 
         for (int i=0; i<n; i++) {
@@ -93,11 +100,8 @@ void treeTimes(BiNode<T>* tree, string treeType) {
 
             do {
                 /* Vengono eseguite n operazioni di ricerca ed m <= n inserimenti */
-                /* TODO Bisogna memorizzare in times[] il tempo impiegato in ogni
-                * iterazione in modo da calcolare la deviazione standard */
+
                 randKey = rand();
-                /* TODO Ricerca nodo di chiave randKey */
-                /* TODO Eventuale inserimento */
 
                 node = tree->find(randKey);
                 if (node == NULL || node->isNull()) {
@@ -106,16 +110,15 @@ void treeTimes(BiNode<T>* tree, string treeType) {
 
                 end = steady_clock::now();
                 k = k + 1;
-                diff = end - start;
-                conversione = double(diff.count());
-            } while (conversione < ((R / Emax) + R)); // end-start -> ^kx^   //sottrarre il tempo
-               // medio della generazione per
-            tn = (conversione) / k; // tn = x^ con errore relativo <= Emax
+                
+                /* diff = end - start; */
+                conversion = duration_cast<secs>(end-start).count();
+            } while (conversion < ((R / Emax) + R));
 
-            nseconds = tn * steady_clock::period::num / steady_clock::period::den; // conversione in secondi
-            times[i] = nseconds;
+            tn = (conversion) / k; // tn = x^ con errore relativo <= Emax
+            
+            times[i] = tn;
         }
-        cout << "k = " << k << endl;
 
         tree = tree->clear();
 

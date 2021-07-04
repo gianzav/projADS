@@ -5,9 +5,13 @@
 //metodo A
 std::string generazioneStringaA(int n){
 
-	std::string s(n,'a');  
-    s[n-1] = 'b';
+    std::string s = "";
+    std::string p;
 
+    for (int i = 0; i < n; i++) {
+        p = 'a' + ((int)rand()) % 2;
+        s = s + p;
+    }
     return s;
 }
 
@@ -25,4 +29,12 @@ std::string generazioneStringaB(int n){
 	}
 
 	return s;	
+}
+
+std::string generazioneCasoPessimo(int n) {
+
+	std::string s(n,'a');  
+    s[n-1] = 'b';
+
+    return s;
 }

@@ -1,4 +1,5 @@
 #include "src/period.h"
+
 #include <chrono>
 #include <cstdlib>
 #include <iostream>

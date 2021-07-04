@@ -163,13 +163,12 @@ void BstNode<T>::show() {
 }
 
 
+
 template <class T>
 BstNode<T>* BstNode<T>::clear() {
-    if (!this->isNull()) {
-        this->left->clear();
-        this->right->clear();
-        delete this;
-    }
+    if (this->left != NULL && !this->left->isNull())
+        delete this->left;
+    if (this->right != NULL && !this->left->isNull())
+        delete this->right;
     return &NULLNODE;
-   
 }

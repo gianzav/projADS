@@ -23,7 +23,7 @@ class BiNode {
         virtual BiNode<ValT>* min() = 0;
         virtual BiNode<ValT>* clear() = 0;
 
-        void show();
+        virtual void show() = 0;
 
         bool isNull();
 

@@ -1,3 +1,4 @@
+#include <stdexcept>
 template <class T>
 AvlNode<std::string> AvlNode<T>::STR_NULLNODE = {INT16_MIN, "", 0, NULL, NULL, NULL, true};
 
@@ -290,13 +291,12 @@ AvlNode<T>* AvlNode<T>::balance() {
     return x;
 }
 
+
 template <class T>
 AvlNode<T>* AvlNode<T>::clear() {
-    if (!this->isNull()) {
-        this->left->clear();
-        this->right->clear();
-        delete this;
-    }
-
+    if (this->left != NULL && !this->left->isNull())
+        delete this->left;
+    if (this->right != NULL && !this->left->isNull())
+        delete this->right;
     return &NULLNODE;
 }

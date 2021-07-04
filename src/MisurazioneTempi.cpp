@@ -4,8 +4,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
+/* #include <stdio.h> */
+/* #include <stdlib.h> */
 #include <string>
 #include <time.h>
 
@@ -156,7 +156,7 @@ void deviazioneStandardPeriodo(int (*periodFunc)(std::string), std::string funcN
     for (int i=0; i<100; i++) {
         meanTime += times[i];
     }
-    meanTime = meanTime/n;
+    meanTime = meanTime/100;
 
     /* Calcolo della deviazione standard */
     for (int i=0; i<100; i++) {
@@ -169,6 +169,8 @@ void deviazioneStandardPeriodo(int (*periodFunc)(std::string), std::string funcN
     cout << n << "," << nTest << "," << sd << endl;
 
 }
+
+
 
 
 int main() {
