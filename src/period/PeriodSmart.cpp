@@ -8,7 +8,6 @@ int PeriodSmart(string s) {  //calcolo bordo
     r[1] = 0;           
 
     for (int i = 1; i < n; i++) {
-        //cout<<s.substr(i+1,1)<<endl; 
         int z = r[i];
 
         while((z > 0) && (s.substr(i,1) != s.substr(z,1))) {
@@ -23,12 +22,3 @@ int PeriodSmart(string s) {  //calcolo bordo
     }           
     return n-r[n]; // r[n] bordo max di S (n-r[n] = periodo minimo)
 }
-
-
-/* int main() { */
-/*     string stringa = "abcabcabca"; */
-/* 	//std::cin>> stringa; */
-/* 	int freq = PeriodSmart(stringa); */
-/* 	cout << freq; */
-/* 	return 0; */
-/* } */

@@ -47,7 +47,6 @@ int misurazioneTempiMedi(int (*periodFunc)(std::string), std::string funcName) {
     double Emax = 0.001;                        // Errorre relativo massimo ammesso
     steady_clock::time_point start;             // = clock start;
     steady_clock::time_point end;               // = clock end;
-    /* duration<double, seconds::period> diff; */
     double tn;
     double conversion;
     double nSeconds;
@@ -69,13 +68,12 @@ int misurazioneTempiMedi(int (*periodFunc)(std::string), std::string funcName) {
         k = 0;
 
         do {
-            string StringaGenerata = generazioneStringaB(n);
-            period = periodFunc(StringaGenerata);
+            string stringaGenerata = generazioneStringaB(n);
+            period = periodFunc(stringaGenerata);
             end = steady_clock::now();
 
             /* Incremento k finchè la disequazione non è vera */
             k = k + 1;
-            /* diff = end - start; */
 
             /* Conversione in secondi del tempo di calcolo, moltiplicato per la
             * costante k */
@@ -87,8 +85,6 @@ int misurazioneTempiMedi(int (*periodFunc)(std::string), std::string funcName) {
         * errore relativo <= Emax */
         tn = (conversion) / k;
 
-        /* Conversione in secondi */
-        /* nSeconds = tn * steady_clock::period::num / steady_clock::period::den; // conversione in secondi */
 
         /* Stampa delle misurazioni */
         cout << n << "," << tn << endl;
@@ -97,11 +93,6 @@ int misurazioneTempiMedi(int (*periodFunc)(std::string), std::string funcName) {
     return 0;
 }
 
-
-/* - Provare a vedere come viene il grafico anche con n > 1000
-*  - Probabilmente i grafici saranno simili visto che n è fissato
-*  - Commentare il codice
-**/
 
 /**
  * Calcolo della deviazione standard del tempo medio di calcolo del periodo
@@ -113,7 +104,6 @@ void deviazioneStandardPeriodo(int (*periodFunc)(std::string), std::string funcN
     double Emax = 0.001;            // Errorre relativo massimo ammesso
     steady_clock::time_point start; // = clock start;
     steady_clock::time_point end;   // = clock end;
-    /* steady_clock::duration diff; */
     double tn;
     double conversion;
     double nSeconds;
@@ -135,18 +125,15 @@ void deviazioneStandardPeriodo(int (*periodFunc)(std::string), std::string funcN
         k = 0;
 
         do {
-            string StringaGenerata = generazioneStringaA(n);
-            period = periodFunc(StringaGenerata);
+            string stringaGenerata = generazioneStringaA(n);
+            period = periodFunc(stringaGenerata);
             end = steady_clock::now();
             k = k + 1;
-            /* diff = end - start; */
             conversion = duration_cast<secs>(end-start).count();
         } while (conversion < ((R / Emax) + R));
 
         /* Calcolo del tempo impiegato con errore relativo <= Emax */
         tn = (conversion) / k;
-        /* Conversione del tempo in secondi */
-        /* nSeconds = tn * steady_clock::period::num / steady_clock::period::den; */
 
         /* Memorizzazione del tempo impiegato per la singola esecuzione */
         times[j] = tn;
