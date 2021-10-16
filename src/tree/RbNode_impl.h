@@ -24,11 +24,6 @@ colors RbNode<T>::getColor() {
     return this->color;
 }
 
-/* template <class T> */
-/* int RbNode<T>::getBlackHeight() { */
-/*     return this->blackHeight; */
-/* } */
-
 template <class T>
 void RbNode<T>::setColor(colors c) {
     this->color = c;
@@ -102,6 +97,7 @@ RbNode<T>* RbNode<T>::rightRotate() {
     return y;
 }
 
+
 template <class T>
 void RbNode<T>::preOrder(RbNode<T> *x) {
     if (x != NULL && !x->isNull()) {
@@ -115,6 +111,7 @@ void RbNode<T>::preOrder(RbNode<T> *x) {
         std::cout << "NULL ";
     }
 }
+
 
 template <class T>
 RbNode<T>* RbNode<T>::find(int k) {
@@ -228,6 +225,7 @@ void RbNode<T>::insertBalance() {
         }
     }
 }
+
 
 /* Finds the successor of this node */
 template <class T>

@@ -62,8 +62,7 @@ class RbNode : public BiNode<T> {
         static RbNode<std::string> STR_NULLNODE; 
         static RbNode<T> NULLNODE;
 
-    protected:
-        void preOrder(RbNode* x);
+    protected: void preOrder(RbNode* x);
 
     private:
         void insertBalance();
